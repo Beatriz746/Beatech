@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beatech | Aprende. Cria. Transforma.</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #050b18;
+            color: white;
+        }
+
+        /* NAVBAR */
+
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(5, 11, 24, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #168cff;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #dbe7f7;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #168cff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-login {
+            color: white;
+            border: 1px solid #168cff;
+        }
+
+        .btn-primary {
+            background: #168cff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(22,140,255,0.3);
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 25px 70px;
+            background:
+                radial-gradient(circle at 80% 30%, rgba(22,140,255,0.18), transparent 35%),
+                #050b18;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 70px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #168cff;
+        }
+
+        .hero p {
+            max-width: 600px;
+            color: #aebdd1;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-card {
+            height: 420px;
+            border: 1px solid rgba(22,140,255,0.3);
+            border-radius: 25px;
+            background: linear-gradient(
+                145deg,
+                rgba(22,140,255,0.15),
+                rgba(255,255,255,0.03)
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            width: 220px;
+            height: 220px;
+            background: #168cff;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.35;
+            position: absolute;
+        }
+
+        .code-box {
+            width: 80%;
+            background: #080f20;
+            border: 1px solid #203452;
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .code-box p {
+            margin: 8px 0;
+            font-family: monospace;
+            color: #8bbcf0;
+            font-size: 14px;
+        }
+
+        .code-box .blue {
+            color: #168cff;
+        }
+
+        /* SEÇÕES */
+
+        section {
+            padding: 100px 25px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #91a1b7;
+        }
+
+        /* ÁREAS */
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .area-card {
+            padding: 30px;
+            background: #0a1325;
+            border: 1px solid #172945;
+            border-radius: 16px;
+            transition: 0.3s;
+        }
+
+        .area-card:hover {
+            transform: translateY(-7px);
+            border-color: #168cff;
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 18px;
+        }
+
+        .area-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .area-card p {
+            color: #91a1b7;
+            line-height: 1.6;
+        }
+
+        /* COMO FUNCIONA */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .number {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #168cff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .step p {
+            color: #91a1b7;
+            margin-top: 10px;
+        }
+
+        /* CURSOS */
+
+        .courses {
+            background: #071021;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .course-card {
+            background: #0b1629;
+            border: 1px solid #1a2c48;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .course-image {
+            height: 150px;
+            background: linear-gradient(135deg, #168cff, #073b70);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+        }
+
+        .course-content {
+            padding: 22px;
+        }
+
+        .course-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .course-content p {
+            color: #91a1b7;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        /* COMUNIDADE */
+
+        .community {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .community h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .community p {
+            color: #91a1b7;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .community-box {
+            min-height: 300px;
+            border: 1px solid #1a3c64;
+            border-radius: 20px;
+            background: #0a1527;
+            padding: 30px;
+        }
+
+        .post {
+            background: #101d32;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .post small {
+            color: #168cff;
+        }
+
+        /* CTA */
+
+        .cta {
+            text-align: center;
+            background:
+                radial-gradient(circle, rgba(22,140,255,0.18), transparent 60%),
+                #071021;
+        }
+
+        .cta h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #9aabc0;
+            margin-bottom: 30px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 45px 25px;
+            border-top: 1px solid #172945;
+            background: #030811;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        footer p {
+            color: #73849a;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #91a1b7;
+            text-decoration: none;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .nav-links,
+            .nav-buttons {
+                display: none;
+            }
+
+            .hero-container,
+            .community {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .areas-grid,
+            .course-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .areas-grid,
+            .course-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+
+        <div class="logo">
+            Bea<span>tech</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#academia">Academia</a></li>
+            <li><a href="#cursos">Cursos</a></li>
+            <li><a href="#comunidade">Comunidade</a></li>
+            <li><a href="#sobre">Sobre nós</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="#" class="btn btn-login">Entrar</a>
+            <a href="#" class="btn btn-primary">Criar conta</a>
+        </div>
+
+    </nav>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="inicio">
+
+    <div class="hero-container">
+
+        <div>
+
+            <h1>
+                Aprende tecnologia.
+                <span>Cria o teu futuro.</span>
+            </h1>
+
+            <p>
+                A Beatech é uma plataforma de formação tecnológica
+                criada para jovens que querem começar, desenvolver
+                e transformar as suas ideias através da tecnologia.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">
+                    Começar agora
+                </a>
+
+                <a href="#cursos" class="btn btn-login">
+                    Explorar cursos
+                </a>
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="code-box">
+
+                <p>
+                    <span class="blue">const</span> futuro = "tecnologia";
+                </p>
+
+                <p>
+                    aprender(futuro);
+                </p>
+
+                <p>
+                    criar(projeto);
+                </p>
+
+                <p>
+                    transformar(mundo);
+                </p>
+
+                <p>
+                    <span class="blue">Beatech</span> 🚀
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ÁREAS -->
+
+<section id="academia">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Aprende na Beatech</h2>
+
+            <p>
+                Desenvolve competências nas principais áreas da tecnologia.
+            </p>
+
+        </div>
+
+
+        <div class="areas-grid">
+
+            <div class="area-card">
+                <div class="icon">💻</div>
+                <h3>Programação</h3>
+                <p>
+                    Aprende lógica, linguagens de programação
+                    e desenvolvimento de aplicações.
+                </p>
+            </div>
+
+            <div class="area-card">
+                <div class="icon">🌐</div>
+                <h3>Desenvolvimento Web</h3>
+                <p>
+                    Cria sites modernos utilizando HTML, CSS,
+                    JavaScript e outras tecnologias.
+                </p>
+            </div>
+
+            <div class="area-card">
+                <div class="icon">🗄️</div>
+                <h3>Bases de Dados</h3>
+                <p>
+                    Aprende a armazenar, organizar e gerir
+                    informações de aplicações.
+                </p>
+            </div>
+
+            <div class="area-card">
+                <div class="icon">🔐</div>
+                <h3>Cibersegurança</h3>
+                <p>
+                    Conhece os fundamentos da segurança
+                    digital e proteção de sistemas.
+                </p>
+            </div>
+
+            <div class="area-card">
+                <div class="icon">📡</div>
+                <h3>Redes</h3>
+                <p>
+                    Aprende os fundamentos das redes,
+                    comunicação e infraestrutura.
+                </p>
+            </div>
+
+            <div class="area-card">
+                <div class="icon">🤖</div>
+                <h3>Inteligência Artificial</h3>
+                <p>
+                    Descobre como a IA funciona e como
+                    pode ser aplicada em projetos.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMO FUNCIONA -->
+
+<section>
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Como funciona?</h2>
+
+            <p>
+                Começar a aprender é simples.
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="number">1</div>
+                <h3>Cria uma conta</h3>
+                <p>
+                    Regista-te gratuitamente na Beatech.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="number">2</div>
+                <h3>Escolhe um curso</h3>
+                <p>
+                    Encontra uma área que queres aprender.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="number">3</div>
+                <h3>Aprende e pratica</h3>
+                <p>
+                    Assiste às aulas e desenvolve projetos.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="number">4</div>
+                <h3>Recebe certificado</h3>
+                <p>
+                    Conclui o curso e demonstra as tuas competências.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CURSOS -->
+
+<section class="courses" id="cursos">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Cursos em destaque</h2>
+
+            <p>
+                Começa por uma destas formações.
+            </p>
+
+        </div>
+
+
+        <div class="course-grid">
+
+            <div class="course-card">
+
+                <div class="course-image">
+                    &lt;/&gt;
+                </div>
+
+                <div class="course-content">
+
+                    <h3>HTML & CSS</h3>
+
+                    <p>
+                        Aprende a construir as primeiras
+                        páginas web.
+                    </p>
+
+                    <a href="#" class="btn btn-primary">
+                        Ver curso
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="course-card">
+
+                <div class="course-image">
+                    JS
+                </div>
+
+                <div class="course-content">
+
+                    <h3>JavaScript</h3>
+
+                    <p>
+                        Aprende programação para tornar
+                        os teus sites interativos.
+                    </p>
+
+                    <a href="#" class="btn btn-primary">
+                        Ver curso
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="course-card">
+
+                <div class="course-image">
+                    SQL
+                </div>
+
+                <div class="course-content">
+
+                    <h3>MySQL</h3>
+
+                    <p>
+                        Aprende os fundamentos de bases
+                        de dados relacionais.
+                    </p>
+
+                    <a href="#" class="btn btn-primary">
+                        Ver curso
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMUNIDADE -->
+
+<section id="comunidade">
+
+    <div class="container">
+
+        <div class="community">
+
+            <div>
+
+                <h2>
+                    Faz parte da
+                    <span style="color:#168cff;">
+                        Comunidade Tech
+                    </span>
+                </h2>
+
+                <p>
+                    Aprende com outros estudantes, partilha
+                    os teus projetos, faz perguntas e encontra
+                    pessoas que também estão a começar na tecnologia.
+                </p>
+
+                <a href="#" class="btn btn-primary">
+                    Entrar na comunidade
+                </a>
+
+            </div>
+
+
+            <div class="community-box">
+
+                <div class="post">
+                    <small>@aluno01</small>
+                    <p>
+                        Finalmente terminei o meu primeiro
+                        projeto em HTML! 🚀
+                    </p>
+                </div>
+
+                <div class="post">
+                    <small>@devjovem</small>
+                    <p>
+                        Alguém pode explicar como funciona
+                        o JavaScript?
+                    </p>
+                </div>
+
+                <div class="post">
+                    <small>@beatech</small>
+                    <p>
+                        Novo curso de programação disponível!
+                        💻
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta" id="sobre">
+
+    <div class="container">
+
+        <h2>
+            O teu futuro na tecnologia começa aqui.
+        </h2>
+
+        <p>
+            Aprende. Cria. Partilha. Transforma.
+        </p>
+
+        <a href="#" class="btn btn-primary">
+            Criar a minha conta
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <div class="logo">
+                Bea<span>tech</span>
+            </div>
+
+            <p>
+                Formação tecnológica para jovens.
+            </p>
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">GitHub</a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
